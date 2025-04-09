@@ -1,0 +1,22 @@
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Comic Neue", sans-serif;;
+}
+
+.instructions {
+    color: white;
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .instructions {
+        font-size: 1.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .instructions {
+        font-size: 1.8rem;
+    }
+}
