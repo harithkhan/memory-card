@@ -73,4 +73,18 @@ body {
     flex-direction: column;
     padding: 1rem;
     font-family: "SpongeFont", "Comic Neue", sans-serif;
+    background-image: url(assets/background/background-narrow.jpeg);
+    background-size: cover;
+    background-position: center;
+    min-height: 1000px;
+}
+
+@media (min-width: 768px) {
+    body {
+        background-image: url(assets/background/background-wide.jpg);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        min-height: 1024px;
+    }
 }
