@@ -55,3 +55,12 @@ h6 {
 #__next {
     isolation: isolate;
 }
+
+/* CSS Reset Ends */
+/* General Styling */
+
+body {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
