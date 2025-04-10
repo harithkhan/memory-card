@@ -1,7 +1,10 @@
 import headerIcon from "../../assets/header-icon.png";
 import "../../styles/Header.css";
+import { useState } from "react";
 
 export default function Header() {
+    const [score, setScore] = useState(0);
+    const [highscore, setHighscore] = useState(0);
     return (
         <header>
             <div className="header-left">
@@ -16,8 +19,8 @@ export default function Header() {
                 </div>
             </div>
             <div className="score-container">
-                <h2>Score: 0</h2>
-                <h2>Highscore: 0</h2>
+                <h2>Score: {score}</h2>
+                <h2>Highscore: {highscore}</h2>
             </div>
         </header>
     );
