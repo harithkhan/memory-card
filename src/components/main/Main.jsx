@@ -1,4 +1,5 @@
 import "../../styles/Main.css";
+import Cards from "./Cards";
 
 export default function Main() {
     return (
@@ -7,6 +8,7 @@ export default function Main() {
                 Click on unique character to accumulate score. Duplicates will
                 reset your progress.
             </h3>
+            <Cards />
         </main>
     );
 }
