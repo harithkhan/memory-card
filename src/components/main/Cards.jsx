@@ -30,35 +30,45 @@ function shuffleArray(array) {
 
 export default function Cards() {
     const [updatedSpongeIds, setUpdatedSpongeIds] = useState(spongeIds);
+    const [gifMap, setGifMap] = useState({}); // { id: gifUrl }
 
-    function handleCardClick(array) {
-        const newArr = shuffleArray(array);
-        setUpdatedSpongeIds(newArr);
+    useEffect(() => {
+        const fetchAllGifs = async () => {
+            const apiKey = "1Yf3NuogrS4q5SoCqUV1djDyJpAEPU3j";
+
+            const newGifMap = {};
+
+            for (let id of spongeIds) {
+                try {
+                    const res = await fetch(`https://api.giphy.com/v1/gifs/${id}?api_key=${apiKey}`);
+                    const data = await res.json();
+                    const url = data.data.images.original.url;
+                    newGifMap[id] = url;
+                } catch (err) {
+                    console.error(`Failed to fetch gif ${id}:`, err);
+                }
+            }
+
+            setGifMap(newGifMap);
+        };
+
+        fetchAllGifs();
+    }, []);
+
+    function handleCardClick() {
+        setUpdatedSpongeIds(shuffleArray(updatedSpongeIds));
     }
 
     function SpongeCard({ spongeId }) {
-        const [gifUrl, setGifUrl] = useState("");
-        useEffect(() => {
-            const fetchGif = async () => {
-                try {
-                    const apiKey = "1Yf3NuogrS4q5SoCqUV1djDyJpAEPU3j";
-                    const gifId = spongeId;
-                    const res = await fetch(`https://api.giphy.com/v1/gifs/${gifId}?api_key=${apiKey}`);
-                    const data = await res.json();
-                    const url = data.data.images.original.url;
-                    setGifUrl(url);
-                } catch (err) {
-                    console.error("Failed to fetch gif:", err);
-                }
-            };
-            fetchGif();
-        }, []);
+        const gifUrl = gifMap[spongeId];
+
         return (
-            <button className="card" onClick={() => handleCardClick(updatedSpongeIds)}>
+            <button className="card" onClick={handleCardClick}>
                 {gifUrl ? <img src={gifUrl} alt="Giphy GIF" /> : <p>Loading...</p>}
             </button>
         );
     }
+
     return (
         <div className="cards-container">
             {updatedSpongeIds.map((id) => (
