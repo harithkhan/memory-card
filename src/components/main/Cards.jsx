@@ -71,7 +71,7 @@ export default function Cards() {
 
     return (
         <div className="cards-container">
-            {updatedSpongeIds.map((id) => (
+            {updatedSpongeIds.slice(0, 8).map((id) => (
                 <SpongeCard key={id} spongeId={id} />
             ))}
         </div>
