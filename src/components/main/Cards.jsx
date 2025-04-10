@@ -1,26 +1,28 @@
 import "../../styles/Cards.css";
 import { useEffect, useState } from "react";
 
-const spongeOne = "iJhEhO7IhmAjS";
-const spongeTwo = "bYB0rwy8SNZjq";
-const spongeThree = "";
-const spongeFour = "";
-const spongeFive = "";
-const spongeSix = "";
-const spongeSeven = "";
-const spongeEight = "";
-const spongeNine = "";
-const spongeTen = "";
-const spongeEleven = "";
-const spongeTwelve = "";
-const spongeThirteen = "";
-const spongeFourteen = "";
-const spongeFifteen = "";
-const spongeSixteen = "";
-const spongeSeventeen = "";
-const spongeEighteen = "";
-const spongeNineteen = "";
-const spongeTwenty = "";
+const spongeIds = [
+    "iJhEhO7IhmAjS",
+    "bYB0rwy8SNZjq",
+    "LSk5aGh2WYL6g",
+    "9q0MGzdrjWFYk",
+    "Zw8qM7qBEg6mQ",
+    "aB8acJ0dByuGY",
+    "SKGo6OYe24EBG",
+    "3o7aCTPPm4OHfRLSH6",
+    "ISOckXUybVfQ4",
+    "njPdRtrrdyoVO",
+    "iQ6yGuMhPGWhW",
+    "10briMdj6tGzHa",
+    "LdOyjZ7io5Msw",
+    "l0MYAs5E2oIDCq9So",
+    "UvOcKPHrkKSLm",
+    "M8xmO5ZcLPtAY",
+    "141kXAUyJFoBEc",
+    "nrXif9YExO9EI",
+    "D7z8JfNANqahW",
+    "nDSlfqf0gn5g4",
+];
 
 function SpongeCard({ spongeId }) {
     const [gifUrl, setGifUrl] = useState("");
@@ -51,8 +53,9 @@ function SpongeCard({ spongeId }) {
 export default function Cards() {
     return (
         <div className="cards-container">
-            <SpongeCard spongeId={spongeOne} />
-            <SpongeCard spongeId={spongeTwo} />
+            {spongeIds.map((id, index) => (
+                <SpongeCard key={index} spongeId={id} />
+            ))}
         </div>
-    )
+    );
 }
