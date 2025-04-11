@@ -2,8 +2,7 @@ import headerIcon from "../../assets/header-icon.png";
 import "../../styles/Header.css";
 import { useState } from "react";
 
-export default function Header() {
-    const [score, setScore] = useState(0);
+export default function Header({ score }) {
     const [highscore, setHighscore] = useState(0);
     return (
         <header>

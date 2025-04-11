@@ -28,7 +28,7 @@ function shuffleArray(array) {
     return [...array].sort(() => Math.random() - 0.5);
 }
 
-export default function Cards() {
+export default function Cards({ onCardClick }) {
     const [updatedSpongeIds, setUpdatedSpongeIds] = useState(spongeIds);
     const [gifMap, setGifMap] = useState({}); // { id: gifUrl }
 
@@ -59,6 +59,7 @@ export default function Cards() {
 
     function handleCardClick() {
         setUpdatedSpongeIds(shuffleArray(updatedSpongeIds));
+        onCardClick();
     }
 
     function SpongeCard({ spongeId }) {
