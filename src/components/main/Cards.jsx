@@ -40,7 +40,9 @@ export default function Cards() {
 
             for (let id of spongeIds) {
                 try {
-                    const res = await fetch(`https://api.giphy.com/v1/gifs/${id}?api_key=${apiKey}`);
+                    const res = await fetch(
+                        `https://api.giphy.com/v1/gifs/${id}?api_key=${apiKey}`
+                    );
                     const data = await res.json();
                     const url = data.data.images.original.url;
                     newGifMap[id] = url;
@@ -64,7 +66,11 @@ export default function Cards() {
 
         return (
             <button className="card" onClick={handleCardClick}>
-                {gifUrl ? <img src={gifUrl} alt="Giphy GIF" /> : <p>Loading...</p>}
+                {gifUrl ? (
+                    <img src={gifUrl} alt="Giphy GIF" />
+                ) : (
+                    <p>Loading...</p>
+                )}
             </button>
         );
     }
