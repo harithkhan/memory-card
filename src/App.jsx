@@ -6,28 +6,27 @@ import { useState } from "react";
 function App() {
     const [score, setScore] = useState(0);
     const [cardMemory, setCardMemory] = useState([]);
-
-    function increaseScore() {
-        setScore((score) => score + 1);
-    }
+    const [highscore, setHighscore] = useState(0);
 
     function handleCardClick(id) {
-        if (cardMemory.length === 0) {
-            setCardMemory([id]);
-            increaseScore();
-            return;
-        } else if (!cardMemory.includes(id)) {
-            setCardMemory([...cardMemory, id]);
-            increaseScore();
-        } else if (cardMemory.includes(id)) {
+        if (cardMemory.includes(id)) {
             setScore(0);
             setCardMemory([]);
             return;
         }
+
+        const newScore = score + 1;
+        setScore(newScore);
+        if (newScore > highscore) {
+            setHighscore(newScore);
+        }
+
+        setCardMemory([...cardMemory, id]);
     }
+
     return (
         <>
-            <Header score={score} />
+            <Header score={score} highscore={highscore} />
             <Main onCardClick={handleCardClick} />
         </>
     );

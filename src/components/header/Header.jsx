@@ -1,9 +1,7 @@
 import headerIcon from "../../assets/header-icon.png";
 import "../../styles/Header.css";
-import { useState } from "react";
 
-export default function Header({ score }) {
-    const [highscore, setHighscore] = useState(0);
+export default function Header({ score, highscore }) {
     return (
         <header>
             <div className="header-left">
