@@ -20,6 +20,8 @@ function App() {
             setCardMemory([...cardMemory, id]);
             increaseScore();
         } else if (cardMemory.includes(id)) {
+            setScore(0);
+            setCardMemory([]);
             return;
         }
     }
