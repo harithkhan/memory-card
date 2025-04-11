@@ -6,7 +6,7 @@ export default function Main({ onCardClick }) {
         <main>
             <h3 className="instructions">
                 Click on unique character to accumulate score. Duplicates will
-                reset your progress.
+                reset your progress. See if you can reach the max score of 20!
             </h3>
             <Cards onCardClick={onCardClick} />
         </main>
