@@ -5,20 +5,21 @@ import { useState } from "react";
 
 function App() {
     const [score, setScore] = useState(0);
-    const [currentCard, setCurrentCard] = useState(undefined);
+    const [cardMemory, setCardMemory] = useState([]);
 
     function increaseScore() {
         setScore((score) => score + 1);
     }
 
     function handleCardClick(id) {
-        if (!currentCard) {
-            setCurrentCard(id);
+        if (cardMemory.length === 0) {
+            setCardMemory([id]);
             increaseScore();
             return;
-        } else if (currentCard !== id) {
+        } else if (!cardMemory.includes(id)) {
+            setCardMemory([...cardMemory, id]);
             increaseScore();
-        } else if (currentCard === id) {
+        } else if (cardMemory.includes(id)) {
             return;
         }
     }
