@@ -44,10 +44,22 @@ export default function Cards({ onCardClick }) {
                         `https://api.giphy.com/v1/gifs/${id}?api_key=${apiKey}`
                     );
                     const data = await res.json();
-                    const url = data.data.images.original.url;
-                    newGifMap[id] = url;
+
+                    // If response is OK and data is valid, use the real URL
+                    if (data?.data?.images?.original?.url) {
+                        newGifMap[id] = data.data.images.original.url;
+                    } else {
+                        // Fallback if structure is broken
+                        newGifMap[id] =
+                            `https://media.giphy.com/media/${id}/giphy.gif`;
+                    }
                 } catch (err) {
-                    console.error(`Failed to fetch gif ${id}:`, err);
+                    console.warn(
+                        `Fallback for ${id} due to API error:`,
+                        err.message
+                    );
+                    newGifMap[id] =
+                        `https://media.giphy.com/media/${id}/giphy.gif`;
                 }
             }
 
