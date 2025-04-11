@@ -1,0 +1,29 @@
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    padding-bottom: 2rem;
+    color: white;
+}
+
+.credit {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+footer a {
+    text-decoration: none;
+    color: white;
+    transition: color 0.3s ease; 
+}
+
+footer a:hover {
+    color: black;
+}
+
+.credit img {
+    height: 2rem;
+    width: 2rem;
+}

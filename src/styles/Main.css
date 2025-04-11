@@ -4,6 +4,7 @@ main {
     align-items: center;
     font-family: "Comic Neue", sans-serif;
     width: 100%;
+    margin-bottom: 2rem;
 }
 
 .instructions {
