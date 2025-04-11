@@ -87,5 +87,7 @@ body {
         background-position: center;
         background-repeat: no-repeat;
         min-height: 1024px;
+        max-width: 1200px;
+        margin: 0 auto;
     }
 }
