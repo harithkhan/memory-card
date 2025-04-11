@@ -62,13 +62,13 @@ export default function Cards({ onCardClick }) {
         onCardClick();
     }
 
-    function SpongeCard({ spongeId }) {
+    function SpongeCard({ spongeId, id }) {
         const gifUrl = gifMap[spongeId];
 
         return (
             <button className="card" onClick={handleCardClick}>
                 {gifUrl ? (
-                    <img src={gifUrl} alt="Giphy GIF" />
+                    <img src={gifUrl} alt="Giphy GIF" id={id} />
                 ) : (
                     <p>Loading...</p>
                 )}
@@ -79,7 +79,7 @@ export default function Cards({ onCardClick }) {
     return (
         <div className="cards-container">
             {updatedSpongeIds.slice(0, 8).map((id) => (
-                <SpongeCard key={id} spongeId={id} />
+                <SpongeCard key={id} spongeId={id} id={id} />
             ))}
         </div>
     );
