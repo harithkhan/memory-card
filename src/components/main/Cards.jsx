@@ -57,9 +57,9 @@ export default function Cards({ onCardClick }) {
         fetchAllGifs();
     }, []);
 
-    function handleCardClick() {
+    function handleCardClick(event) {
         setUpdatedSpongeIds(shuffleArray(updatedSpongeIds));
-        onCardClick();
+        onCardClick(event.target.id);
     }
 
     function SpongeCard({ spongeId, id }) {
