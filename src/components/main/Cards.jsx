@@ -28,11 +28,14 @@ function getPlayableCards(allIds, memory) {
     const unclicked = allIds.filter((id) => !memory.includes(id));
     const clicked = allIds.filter((id) => memory.includes(id));
 
-    const guaranteed = unclicked.length > 0
-        ? [unclicked[Math.floor(Math.random() * unclicked.length)]]
-        : [];
+    const guaranteed =
+        unclicked.length > 0
+            ? [unclicked[Math.floor(Math.random() * unclicked.length)]]
+            : [];
 
-    const pool = [...unclicked, ...clicked].filter((id) => !guaranteed.includes(id));
+    const pool = [...unclicked, ...clicked].filter(
+        (id) => !guaranteed.includes(id)
+    );
     const shuffledPool = pool.sort(() => Math.random() - 0.5);
     const rest = shuffledPool.slice(0, 7); // fill remaining
 
