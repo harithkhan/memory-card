@@ -24,11 +24,22 @@ const spongeIds = [
     "nDSlfqf0gn5g4",
 ];
 
-function shuffleArray(array) {
-    return [...array].sort(() => Math.random() - 0.5);
+function getPlayableCards(allIds, memory) {
+    const unclicked = allIds.filter((id) => !memory.includes(id));
+    const clicked = allIds.filter((id) => memory.includes(id));
+
+    const guaranteed = unclicked.length > 0
+        ? [unclicked[Math.floor(Math.random() * unclicked.length)]]
+        : [];
+
+    const pool = [...unclicked, ...clicked].filter((id) => !guaranteed.includes(id));
+    const shuffledPool = pool.sort(() => Math.random() - 0.5);
+    const rest = shuffledPool.slice(0, 7); // fill remaining
+
+    return [...guaranteed, ...rest].sort(() => Math.random() - 0.5);
 }
 
-export default function Cards({ onCardClick }) {
+export default function Cards({ onCardClick, cardMemory }) {
     const [updatedSpongeIds, setUpdatedSpongeIds] = useState(spongeIds);
     const [gifMap, setGifMap] = useState({}); // { id: gifUrl }
 
@@ -70,8 +81,10 @@ export default function Cards({ onCardClick }) {
     }, []);
 
     function handleCardClick(event) {
-        setUpdatedSpongeIds(shuffleArray(updatedSpongeIds));
-        onCardClick(event.target.id);
+        const clickedId = event.target.id;
+        onCardClick(clickedId);
+        const newSet = getPlayableCards(spongeIds, [...cardMemory, clickedId]);
+        setUpdatedSpongeIds(newSet);
     }
 
     function SpongeCard({ spongeId, id }) {

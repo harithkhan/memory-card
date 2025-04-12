@@ -36,7 +36,7 @@ function App() {
     return (
         <>
             <Header score={score} highscore={highscore} />
-            <Main onCardClick={handleCardClick} />
+            <Main onCardClick={handleCardClick} cardMemory={cardMemory} />
             {score >= 20 && <Win onClick={restartGame} />}
             <Footer />
         </>
