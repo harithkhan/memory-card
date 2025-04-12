@@ -43,7 +43,9 @@ function getPlayableCards(allIds, memory) {
 }
 
 export default function Cards({ onCardClick, cardMemory }) {
-    const [updatedSpongeIds, setUpdatedSpongeIds] = useState(spongeIds);
+    const [updatedSpongeIds, setUpdatedSpongeIds] = useState(() =>
+        getPlayableCards(spongeIds, cardMemory)
+    );
     const [gifMap, setGifMap] = useState({}); // { id: gifUrl }
 
     useEffect(() => {
